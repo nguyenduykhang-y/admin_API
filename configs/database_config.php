@@ -3,7 +3,7 @@
         private $host = "127.0.0.1";
         private $database_name = "DFPTDUAN";
         private $username = "root";
-        private $password = "";
+        private $password = "123456";
 
         public $connection;
 
