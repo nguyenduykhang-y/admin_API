@@ -1,6 +1,6 @@
 <?php 
 
-include 'config/db.php';
+include 'configs/db.php';
 
 error_reporting(0);
 
