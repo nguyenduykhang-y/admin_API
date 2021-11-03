@@ -3,14 +3,12 @@
         private $id;
         private $email;
         private $hash_password;
-      
-
 
         function __construct($id, $email, $hash_password) {
             $this->id = $id;
             $this->email = $email;
             $this->hash_password = $hash_password;
-            
+
 
         }
 
