@@ -17,7 +17,7 @@
 ?>
 <div class="container-fluid">
     <div class="card">
-        
+    <h4 class="display-4 text-center">Các sản phẩm</h4><br>
         <div class="card-header d-flex justify-content-between align-items-center">
      
             <a href="layout.php?page_layout=them" class="btn btn-primary">
@@ -47,8 +47,8 @@
                     }
                 }
             ?>
-            <table class="table bordered">
-                <thead class="bg-info text-white">
+            <table class="table table-striped">
+                <thead>
                     <tr>
                         <th>STT</th>
                         <th>Ảnh</th>

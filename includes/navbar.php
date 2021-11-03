@@ -35,6 +35,11 @@ if (!isset($_SESSION['email'])) {
     <span>Bảng sản phẩm</span></a>
 </li>
 
+<li class="nav-item">
+  <a class="nav-link" href="layoutUser.php">
+    <i class="fas fa-fw fa-table"></i>
+    <span>Bảng User</span></a>
+</li>
 
 <li class="nav-item">
   <a class="nav-link" href="admin.php">
@@ -51,19 +56,13 @@ if (!isset($_SESSION['email'])) {
 </div>
 
 <!-- Nav Item - Pages Collapse Menu -->
-<li class="nav-item">
+<!-- <li class="nav-item">
   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
     <i class="fas fa-fw fa-cog"></i>
     <span>Components</span>
   </a>
-  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-    <div class="bg-white py-2 collapse-inner rounded">
-      <h6 class="collapse-header">Custom Components:</h6>
-      <a class="collapse-item" href="404.html">Test</a>
-      <a class="collapse-item" href="404.html">Test</a>
-    </div>
-  </div>
-</li>
+ 
+</li> -->
 
 <!-- Divider -->
 <hr class="sidebar-divider">
@@ -121,7 +120,7 @@ if (!isset($_SESSION['email'])) {
           </button>
 
           <!-- Topbar Search -->
-          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+          <!-- <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
             <div class="input-group">
               <input type="text" class="form-control bg-light border-0 small" placeholder="Tim kiếm...." aria-label="Search" aria-describedby="basic-addon2">
               <div class="input-group-append">
@@ -130,7 +129,7 @@ if (!isset($_SESSION['email'])) {
                 </button>
               </div>
             </div>
-          </form>
+          </form> -->
 
 
           <!-- Topbar Navbar -->
