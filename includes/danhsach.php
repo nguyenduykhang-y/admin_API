@@ -54,9 +54,6 @@
                         <th>Ảnh</th>
                         <th>Tên sản phẩm</th>
                         <th>Giá</th>
-                        <th>Số lượng</th>
-                        <th>Mô tả</th>
-                        <th>Thương hiệu</th>
                         <th width="12%">Action</th>
                     </tr>
                 </thead>
@@ -75,9 +72,7 @@
                                 </td>
                                 <td><?php echo $row['prd_name']; ?></td>
                                 <td><?php echo $row['price']; ?> VND</td>
-                                <td><?php echo $row['quantity']; ?></td>
-                                <td><?php echo $row['description']; ?></td>
-                                <td><?php echo $row['brand_name']; ?></td>
+                             
                                 <td>
                                     <a class="fas fa-edit text-muted" href="layout.php?page_layout=sua&id=<?php echo $row['prd_id']; ?>"></a>
 
