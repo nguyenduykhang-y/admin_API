@@ -19,7 +19,6 @@
 			      <th scope="col">#</th>
 			      <th scope="col">Name</th>
 			      <th scope="col">Email</th>
-						<th scope="col">password</th>
 			    </tr>
 			  </thead>
 			  <tbody>
@@ -32,7 +31,6 @@
 			      <th scope="row"><?=$i?></th>
 			      <td><?=$rows['username']?></td>
 			      <td><?php echo $rows['email']; ?></td>
-						<td><?php echo $rows['password']; ?></td>
 			      
 			    </tr>
 			    <?php } ?>

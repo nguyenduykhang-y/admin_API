@@ -1,7 +1,7 @@
 <?php 
 
 if (isset($_POST['create'])) {
-	include "configs/db.php";
+	include "configs/database_config.php";
 	function validate($data){
         $data = trim($data);
         $data = stripslashes($data);
@@ -22,7 +22,7 @@ if (isset($_POST['create'])) {
 
        $sql = "INSERT INTO users(username, email) 
                VALUES('$username', '$email')";
-       $result = mysqli_query($connect, $sql);
+       $result = mysqli_query($connection, $sql);
        if ($result) {
        	  header("Location: ../read.php?success=successfully created");
        }else {
