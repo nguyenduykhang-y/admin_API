@@ -15,7 +15,7 @@ if (isset($_POST['submit'])) {
 	$password = md5($_POST['password']);
 
 	$sql = "SELECT * FROM users WHERE email='$email' AND password='$password'";
-	$result = mysqli_query($connect, $sql);
+	$result = mysqli_query($connection, $sql);
 	if ($result->num_rows > 0) {
 		$row = mysqli_fetch_assoc($result);
 		$_SESSION['email'] = $row['email'];

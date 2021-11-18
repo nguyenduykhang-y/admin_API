@@ -36,7 +36,8 @@ INSERT into tblCategories(name) VALUES ('Mobile'), ('Laptop'), ('Desktop'),('Acc
 
 
 
-
+----------------------------------------------------------------
+--bản admin
 -- Cơ sở dữ liệu: `php1fpt`
 --
 
