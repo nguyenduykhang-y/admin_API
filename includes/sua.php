@@ -2,10 +2,10 @@
     $id = $_GET['id'];
 
     $sql_brand = "SELECT * FROM brands";
-    $query_brand = mysqli_query($connect, $sql_brand);
+    $query_brand = mysqli_query($connection, $sql_brand);
 
     $sql_up = "SELECT * FROM products WHERE prd_id = $id";
-    $query_up = mysqli_query($connect, $sql_up);
+    $query_up = mysqli_query($connection, $sql_up);
     $row_up = mysqli_fetch_assoc($query_up);
 
     if(isset($_POST['sbm'])){
