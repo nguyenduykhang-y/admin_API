@@ -2,11 +2,11 @@
     if(isset($_POST['sbm']) && !empty($_POST['search'])){
         $search = $_POST['search'];
         $sql = "SELECT * FROM products INNER JOIN brands ON products.brand_id = brands.brand_id WHERE prd_name LIKE '%$search%'";
-        $query = mysqli_query($connect, $sql);
+        $query = mysqli_query($connection, $sql);
         $total_prd = mysqli_num_rows($query);
     }else{
         $sql = "SELECT * FROM products inner join brands on products.brand_id = brands.brand_id";
-        $query = mysqli_query($connect, $sql);
+        $query = mysqli_query($connection, $sql);
     }
 
     if(isset($_POST['all_prd'])){

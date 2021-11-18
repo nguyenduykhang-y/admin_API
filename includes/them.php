@@ -1,6 +1,6 @@
 <?php
     $sql_brand = "SELECT * FROM brands";
-    $query_brand = mysqli_query($connect, $sql_brand);
+    $query_brand = mysqli_query($connection, $sql_brand);
 
     if(isset($_POST['sbm'])){
         $prd_name = $_POST['prd_name'];
@@ -16,7 +16,7 @@
 
         $sql = "INSERT INTO products(prd_name, image, price, quantity, description, brand_id) VALUES('$prd_name', '$image', $price, $quantity, '$description', $brand_id)";
 
-        $query = mysqli_query($connect, $sql);
+        $query = mysqli_query($connection, $sql);
         move_uploaded_file($image_tmp, 'img/'.$image);
         // header('location: layout.php');
     }
