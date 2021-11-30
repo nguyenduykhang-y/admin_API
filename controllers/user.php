@@ -41,7 +41,9 @@ class UserController {
                 if ($password_valid) {
                     $token = array(
                         "id" => $user->getId(),
-                        "email" => $user->getEmail()
+                        "email" => $user->getEmail(),
+                        "phone" => $user->getPhone(),
+                        "name" => $user->getName()
                     );
                     $access_token = JWT::encode($token, Constant::MY_SECRET_KEY);
                     return $access_token;
