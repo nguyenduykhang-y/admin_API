@@ -15,7 +15,7 @@
 
         public function getByEmail($email){
             try {
-                $q = "SELECT id, email, hash_password from " . $this->tblUsers . " 
+                $q = "SELECT id, email, hash_password, name, phone from " . $this->tblUsers . " 
                     where email=:email limit 0,1 ";
                 $stmt = $this->connection->prepare($q);
                 $stmt->bindParam(":email", $email);
@@ -23,7 +23,7 @@
                 if ($stmt->rowCount() > 0) {
                     $row = $stmt->fetch(PDO::FETCH_ASSOC);
                     extract($row);
-                    return new User($id, $email, $hash_password);
+                    return new User($id, $email, $hash_password, $phone, $name);
                 }
             } catch (Exception $e) {
                 echo $e->getMessage();

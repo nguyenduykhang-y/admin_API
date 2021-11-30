@@ -24,11 +24,14 @@ if ($access_token) {
         $decoded = JWT::decode($access_token, Constant::MY_SECRET_KEY, array('HS256'));
         $id = $decoded->id;
         $email = $decoded->email;
-
+        $phone = $decoded->phone;
+        $name = $decoded->name;
 
         echo json_encode(array(
             "id"=>$id,
-            "email"=>$email
+            "email"=>$email,
+            "phone"=>$phone,
+            "name"=>$name
             
         ));
     } catch (\Throwable $th) {
