@@ -75,6 +75,30 @@
             }
             return false;
         }
+        public function delete($id)
+        {
+            try {
+                $q = "delete from " . $this->tblgh . "
+                        where id=:id
+                ";
+                $stmt = $this->connection->prepare($q);
+                $stmt->bindParam(":id", $id);
+                
+                $this->connection->beginTransaction();
+
+                if ($stmt->execute()) {
+                    $this->connection->commit();
+                    return true;
+                } else {
+                    $this->connection->rollBack();
+                    return false;
+                }
+            } catch (Exception $e) {
+                //throw $th;
+                echo $e;
+            }
+            return false;
+        }
     }
 
 ?>

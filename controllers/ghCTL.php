@@ -17,6 +17,9 @@
         // validation
         return $this->giohang_service->getInsertgh($idProduct, $name, $price, $quantity, $image_url, $category_id);
     }
+    public function delete($id){
+      return $this->giohang_service->delete($id);
+  }
   }
 
 ?>
