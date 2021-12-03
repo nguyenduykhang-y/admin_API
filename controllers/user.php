@@ -25,12 +25,13 @@ class UserController {
             $this->user_service = new UserService();
         }
 
-        public function register($email, $password, $confirm_password){
+        
+        public function register($email, $phone, $name, $password, $confirm_password, $roles){
             if ($password != $confirm_password) {
                 return false;
             }
             $hash_password = password_hash($password, PASSWORD_BCRYPT);
-            $status = $this->user_service->register($email, $hash_password);
+            $status = $this->user_service->register($email, $phone, $name, $hash_password, $roles);
             return $status;
         }
 
@@ -42,8 +43,9 @@ class UserController {
                     $token = array(
                         "id" => $user->getId(),
                         "email" => $user->getEmail(),
-                        "phone" => $user->getPhone(),
-                        "name" => $user->getName()
+                        "phone"=>$user->getPhone(),
+                        "name"=>$user->getName(),
+                        "roles" => $user->getRoles()
                     );
                     $access_token = JWT::encode($token, Constant::MY_SECRET_KEY);
                     return $access_token;
