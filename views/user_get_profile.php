@@ -26,12 +26,14 @@ if ($access_token) {
         $email = $decoded->email;
         $phone = $decoded->phone;
         $name = $decoded->name;
+        $roles = $decoded->roles;
 
         echo json_encode(array(
             "id"=>$id,
             "email"=>$email,
             "phone"=>$phone,
-            "name"=>$name
+            "name"=>$name,
+            "roles"=>$roles 
             
         ));
     } catch (\Throwable $th) {
