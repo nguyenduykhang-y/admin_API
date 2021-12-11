@@ -125,15 +125,7 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`) VALUES
 --
 -- Chỉ mục cho bảng `brands`
 --
-ALTER TABLE `brands`
-  ADD PRIMARY KEY (`brand_id`);
 
---
--- Chỉ mục cho bảng `products`
---
-ALTER TABLE `products`
-  ADD PRIMARY KEY (`prd_id`),
-  ADD KEY `brand_id` (`brand_id`);
 
 
 
