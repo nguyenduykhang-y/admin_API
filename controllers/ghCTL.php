@@ -13,13 +13,17 @@
       return $this->giohang_service->getAllGH();
   }
 
-    public function insertGiohang($idProduct, $name, $price, $quantity, $image_url, $category_id){
+    public function insertGiohang($idProduct, $name, $price, $image_url, $category_id){
         // validation
-        return $this->giohang_service->getInsertgh($idProduct, $name, $price, $quantity, $image_url, $category_id);
+        return $this->giohang_service->getInsertgh($idProduct, $name, $price, $image_url, $category_id);
     }
     public function delete($id){
       return $this->giohang_service->delete($id);
   }
+  public function deleteAll(){
+    return $this->giohang_service->deleteAll();
+}
+
   }
 
 ?>
