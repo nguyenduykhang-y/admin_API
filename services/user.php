@@ -15,7 +15,7 @@
 
         public function getByEmail($email){
             try {
-                $q = "SELECT id, email, hash_password from " . $this->tblUsers . " 
+                $q = "SELECT id, email, phone, name, hash_password, roles from " . $this->tblUsers . " 
                     where email=:email limit 0,1 ";
                 $stmt = $this->connection->prepare($q);
                 $stmt->bindParam(":email", $email);
@@ -23,7 +23,7 @@
                 if ($stmt->rowCount() > 0) {
                     $row = $stmt->fetch(PDO::FETCH_ASSOC);
                     extract($row);
-                    return new User($id, $email, $hash_password);
+                    return new User($id, $email, $phone, $name, $hash_password, $roles);
                 }
             } catch (Exception $e) {
                 echo $e->getMessage();
@@ -31,17 +31,23 @@
             return null;
         }
 
-        public function register($email, $hash_password)
+        public function register($email, $phone, $name, $hash_password, $roles)
         {
             try {
                 $q = "insert into " . $this->tblUsers . "
                         set email=:email,
-                        hash_password=:hash_password
+                        phone=:phone,
+                        name=:name,
+                        hash_password=:hash_password,
+                        roles=:roles
                 ";
                 $stmt = $this->connection->prepare($q);
 
                 $stmt->bindParam(":email", $email);
+                $stmt->bindParam(":phone", $phone);
+                $stmt->bindParam(":name", $name);
                 $stmt->bindParam(":hash_password", $hash_password);
+                $stmt->bindParam(":roles", $roles);
 
                 $this->connection->beginTransaction();
                 if ($stmt->execute()) {
@@ -56,6 +62,7 @@
             }
             return false;
         }
+
 
 
         // tao token reset password, luu vao bang resetpassword

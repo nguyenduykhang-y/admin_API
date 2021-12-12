@@ -28,7 +28,7 @@
 
         $sql = "UPDATE products SET prd_name = '$prd_name', image = '$image', price = $price, quantity = $quantity, description = '$description', brand_id = $brand_id WHERE prd_id = $id";
 
-        $query = mysqli_query($connect, $sql);
+        $query = mysqli_query($connection, $sql);
         header('location: layout.php');
     }
 ?>

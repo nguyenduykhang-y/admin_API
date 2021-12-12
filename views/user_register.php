@@ -10,9 +10,9 @@ $data = json_decode(file_get_contents("php://input"));
 
 include_once '../controllers/user.php';
 
-if ($data->email && $data->password && $data->confirm_password) {
-    $status = (new UserController())->register($data->email, 
-                                    $data->password, $data->confirm_password);
+if ($data->email && $data->password && $data->confirm_password && $data->phone && $data->name) {
+    $status = (new UserController())->register($data->email, $data->phone, $data->name,
+                                    $data->password, $data->confirm_password, $data->roles);
     if ($status) {
         http_response_code(200);
         echo json_encode(array(
