@@ -53,7 +53,7 @@
 
                 <div class="form-group">
                     <label>Mô tả sản phẩm</label>
-                    <input type="text" name="description" class="form-control">
+                    <textarea  form="usrform" name="description" class="form-control"></textarea>
                 </div>
 
                 <div class="form-group">

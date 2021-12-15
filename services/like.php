@@ -12,7 +12,7 @@
         }
         public function getAlli(){
             try {
-                $q = "SELECT id, idProduct,name, price, quantity, image_url, category_id
+                $q = "SELECT id, idProduct,name, price, image_url, category_id
                      from " . $this->tblike . " order by id desc ";
                 $stmt = $this->connection->prepare($q);                
                 
@@ -27,7 +27,6 @@
                             "idProduct" =>$idProduct,
                             "name" =>$name,
                             "price" =>$price,
-                            "quantity" =>$quantity,
                             "image_url" =>$image_url,
                             "category_id" =>$category_id,
                         );
@@ -40,14 +39,13 @@
             }
             return null;
         }
-        public function getInsertLike($idProduct, $name, $price, $quantity, $image_url, $category_id)
+        public function getInsertLike($idProduct, $name, $price, $image_url, $category_id)
         {
             try {
                 $q = "insert into " . $this->tblike."
                         set idProduct=:idProduct,
                         name=:name,
                         price=:price,
-                        quantity=:quantity,
                         image_url=:image_url,
                         category_id=:category_id
                 ";
@@ -56,7 +54,6 @@
                 $stmt->bindParam(":idProduct", $idProduct);
                 $stmt->bindParam(":name", $name);
                 $stmt->bindParam(":price", $price);
-                $stmt->bindParam(":quantity", $quantity);
                 $stmt->bindParam(":image_url", $image_url);
                 $stmt->bindParam(":category_id", $category_id);
                 

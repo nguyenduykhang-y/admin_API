@@ -27,11 +27,10 @@ if ($access_token) {
         $idProduct = $data->idProduct;
         $name = $data->name;
         $price = $data->price;
-        $quantity = $data->quantity;
         $image_url = $data->image_url;
         $category_id = $data->category_id;
 
-        $status = (new LikeController())->insertLike( $idProduct,$name, $price, $quantity, $image_url, $category_id);
+        $status = (new LikeController())->insertLike( $idProduct,$name, $price, $image_url, $category_id);
         if ($status) {
             http_response_code(200);  
             echo json_encode(array("status"=> true));

@@ -4,9 +4,7 @@
 
 		<div class="box">
 			<h4 class="display-4 text-center">User</h4><br>
-			<div class="link-right">
-				<a href="formadd.php" class="link-primary">Create</a>
-			</div>
+			
 			<?php if (isset($_GET['success'])) { ?>
 		    <div class="alert alert-success" role="alert">
 			  <?php echo $_GET['success']; ?>

@@ -13,9 +13,9 @@
       return $this->like_service->getAlli();
   }
 
-    public function insertLike($idProduct, $name, $price, $quantity, $image_url, $category_id){
+    public function insertLike($idProduct, $name, $price, $image_url, $category_id){
         // validation
-        return $this->like_service->getInsertlike($idProduct, $name, $price, $quantity, $image_url, $category_id);
+        return $this->like_service->getInsertlike($idProduct, $name, $price, $image_url, $category_id);
     }
     public function delete($id){
       return $this->like_service->delete($id);

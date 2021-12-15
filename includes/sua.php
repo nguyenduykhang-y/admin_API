@@ -62,7 +62,8 @@
 
                 <div class="form-group">
                     <label>Mô tả sản phẩm</label>
-                    <input type="text" name="description" class="form-control" value="<?php echo $row_up['description']; ?>">
+                    <!-- <input type="text" name="description" class="form-control" value="<?php echo $row_up['description']; ?>"> -->
+                    <textarea type="text" form="usrform" name="description" class="form-control" value="<?php echo $row_up['description']; ?>"></textarea>
                 </div>
 
                 <div class="form-group">
