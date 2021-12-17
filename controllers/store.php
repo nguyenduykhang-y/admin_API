@@ -15,7 +15,10 @@
         public function getAllStore(){
             return $this->store_service->getAllStore();
         }
-
+        public function insert($storeName,$storeAddress,$storePhone,$storeImage,$storeEmail){
+            // validation
+            return $this->store_service->insert($storeName,$storeAddress,$storePhone,$storeImage,$storeEmail);
+        }
 
 }
 
