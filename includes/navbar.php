@@ -1,9 +1,11 @@
 <?php 
 
 session_start();
-
-if (!isset($_SESSION['email'])) {
-    header("Location: index.php");
+ 
+// Verifique se o usuário está logado, se não, redirecione-o para uma página de login
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: index.php");
+    exit;
 }
 
 ?>
@@ -40,7 +42,16 @@ if (!isset($_SESSION['email'])) {
     <i class="fas fa-fw fa-table"></i>
     <span>Bảng User</span></a>
 </li>
-
+<li class="nav-item">
+  <a class="nav-link" href="layoutStore.php">
+    <i class="fas fa-fw fa-table"></i>
+    <span>Danh sách các của hàng</span></a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="layoutOrder.php">
+    <i class="fas fa-fw fa-table"></i>
+    <span>Đơn hàng</span></a>
+</li>
 <li class="nav-item">
   <a class="nav-link" href="admin.php">
     <i class="fas fa-fw fa-chart-area"></i>
@@ -51,9 +62,9 @@ if (!isset($_SESSION['email'])) {
 <hr class="sidebar-divider">
 
 <!-- Heading -->
-<div class="sidebar-heading">
+<!-- <div class="sidebar-heading">
   Interface
-</div>
+</div> -->
 
 <!-- Nav Item - Pages Collapse Menu -->
 <!-- <li class="nav-item">
@@ -65,14 +76,14 @@ if (!isset($_SESSION['email'])) {
 </li> -->
 
 <!-- Divider -->
-<hr class="sidebar-divider">
+<!-- <hr class="sidebar-divider">
 
-<!-- Heading -->
-<div class="sidebar-heading">
+Heading -->
+<!-- <div class="sidebar-heading">
   Addons
-</div>
+</div> -->
 
-<!-- Nav Item - Pages Collapse Menu -->
+<!-- Nav Item - Pages Collapse Menu
 <li class="nav-item">
   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
     <i class="fas fa-fw fa-folder"></i>
@@ -89,7 +100,7 @@ if (!isset($_SESSION['email'])) {
       <a class="collapse-item" href="404.html">404 Page</a>
       <a class="collapse-item" href="blank.html">Blank Page</a>
     </div>
-  </div>
+  </div> -->
 </li>
 
 <!-- Nav Item - Charts -->
@@ -155,15 +166,15 @@ if (!isset($_SESSION['email'])) {
               </div>
             </li>
 
-            <!-- Nav Item - Alerts -->
+            <!-- Nav Item - Alerts
             <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>
-                <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">3+</span>
-              </a>
+                Counter - Alerts -->
+                <!-- <span class="badge badge-danger badge-counter">3+</span>
+              </a> -->
               <!-- Dropdown - Alerts -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+              <!-- <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                 <h6 class="dropdown-header">
                   Alerts Center
                 </h6>
@@ -203,32 +214,20 @@ if (!isset($_SESSION['email'])) {
                 <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
               </div>
             </li>
-            <div class="topbar-divider d-none d-sm-block"></div>
+            <div class="topbar-divider d-none d-sm-block"></div> -->
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                <?php echo "<h5>" . $_SESSION['email'] . "</h5>"; ?>
+                <?php echo htmlspecialchars($_SESSION["username"]); ?>
                 <span class="text-success">Quản trị viên</span>
                 </span>
                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Profile
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Settings
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Activity Log
-                </a>
-                <div class="dropdown-divider"></div>
+            
                 <a href="logout.php" class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Logout
@@ -267,8 +266,6 @@ if (!isset($_SESSION['email'])) {
             <button type="submit" name="logout_btn" class="btn btn-primary">Logout</button>
 
           </form>
-
-
         </div>
       </div>
     </div>

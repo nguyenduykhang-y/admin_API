@@ -1,59 +1,125 @@
-<?php 
-
-include 'configs/db.php';
+<?php
 
 session_start();
-
-error_reporting(0);
-
-if (isset($_SESSION['email'])) {
-    header("Location: welcome.php");
+ 
+// Verifique se o usuário já está logado, em caso afirmativo, redirecione-o para a página de boas-vindas
+if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+    header("location: welcome.php");
+    exit;
 }
+ 
 
-if (isset($_POST['submit'])) {
-	$email = $_POST['email'];
-	$password = md5($_POST['password']);
+require_once "configs/connect.php";
+ 
+$username = $password = "";
+$username_err = $password_err = $login_err = "";
+ 
 
-	$sql = "SELECT * FROM users WHERE email='$email' AND password='$password'";
-	$result = mysqli_query($connection, $sql);
-	if ($result->num_rows > 0) {
-		$row = mysqli_fetch_assoc($result);
-		$_SESSION['email'] = $row['email'];
-		header("Location: welcome.php");
-	} else {
-		echo "<script>alert('Woops! Email or Password is Wrong.')</script>";
-	}
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+ 
+
+    if(empty(trim($_POST["username"]))){
+        $username_err = "Por favor, insira o nome de usuário.";
+    } else{
+        $username = trim($_POST["username"]);
+    }
+    
+    if(empty(trim($_POST["password"]))){
+        $password_err = "Por favor, insira sua senha.";
+    } else{
+        $password = trim($_POST["password"]);
+    }
+  
+
+    if(empty($username_err) && empty($password_err)){
+
+        $sql = "SELECT id, username, password FROM users WHERE username = :username";
+        
+        if($stmt = $pdo->prepare($sql)){
+
+            $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
+            
+
+            $param_username = trim($_POST["username"]);
+            
+
+            if($stmt->execute()){
+   
+                if($stmt->rowCount() == 1){
+                    if($row = $stmt->fetch()){
+                        $id = $row["id"];
+                        $username = $row["username"];
+                        $hashed_password = $row["password"];
+                        if(password_verify($password, $hashed_password)){
+     
+                            session_start();
+                            
+
+                            $_SESSION["loggedin"] = true;
+                            $_SESSION["id"] = $id;
+                            $_SESSION["username"] = $username;                            
+                            
+
+                            header("location: welcome.php");
+                        } else{
+
+                            $login_err = "Nome de usuário ou senha inválidos.";
+                        }
+                    }
+                } else{
+             
+                    $login_err = "Nome de usuário ou senha inválidos.";
+                }
+            } else{
+                echo "Ops! Algo deu errado. Por favor, tente novamente mais tarde.";
+            }
+
+
+            unset($stmt);
+        }
+    }
+    
+
+    unset($pdo);
 }
-
 ?>
-
+ 
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-
-	<title>Login Form - Pure Coding</title>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body{ font: 14px sans-serif; }
+        .wrapper{ width: 360px; padding: 20px; }
+    </style>
 </head>
 <body>
-	<div class="container">
-		<form action="" method="POST" class="login-email">
-			<p class="login-text" style="font-size: 2rem; font-weight: 800;">Login admin</p>
-			<div class="input-group">
-				<input type="email" placeholder="Email" name="email" value="<?php echo $email; ?>" required>
-			</div>
-			<div class="input-group">
-				<input type="password" placeholder="Password" name="password" value="<?php echo $_POST['password']; ?>" required>
-			</div>
-			<div class="input-group">
-				<button name="submit" class="btn">Login</button>
-			</div>
-			<p class="login-register-text">Thêm quản trị mới <a href="register.php">Đăng ký</a>.</p>
-		</form>
-	</div>
+    <div class="wrapper">
+        <h2>Login</h2>
+        <?php 
+        if(!empty($login_err)){
+            echo '<div class="alert alert-danger">' . $login_err . '</div>';
+        }        
+        ?>
+
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
+                <span class="invalid-feedback"><?php echo $username_err; ?></span>
+            </div>    
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>">
+                <span class="invalid-feedback"><?php echo $password_err; ?></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary" value="LOGIN">
+            </div>
+
+        </form>
+    </div>
 </body>
 </html>
