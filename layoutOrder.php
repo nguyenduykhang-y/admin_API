@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 
     <style>
-    
+        
         label{
             font-weight: 500;
         }
@@ -34,18 +34,18 @@
 
 </head>
 <body>
-<h1>All User</h1>
+    <h1>All Order</h1>
     <?php
         if(isset($_GET['page_layout'])){
             switch ($_GET['page_layout']) {
                 case 'danhsach':
-                    require_once 'includes/list_user.php';
+                    require_once 'includes/listct_order.php';
                     break;
 
             
             }
         }else{
-            require_once 'includes/list_user.php';
+            require_once 'includes/listct_order.php';
         }
     ?>
 <?php

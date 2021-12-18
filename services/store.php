@@ -71,7 +71,39 @@
             return null;
         }
 
+        public function insert($storeName, $storeAddress, $storePhone, $storeImage, $storeEmail)
+        {
+            try {
+                $q = "insert into " . $this->tblStore . "
+                        set storeName=:storeName,
+                        storeAddress=:storeAddress,
+                        storePhone=:storePhone,
+                        storeImage=:storeImage,
+                        storeEmail=:storeEmail
+                ";
+                $stmt = $this->connection->prepare($q);
 
+                $stmt->bindParam(":storeName", $storeName);
+                $stmt->bindParam(":storeAddress", $storeAddress);
+                $stmt->bindParam(":storePhone", $storePhone);
+                $stmt->bindParam(":storeImage", $storeImage);
+                $stmt->bindParam(":storeEmail", $storeEmail);
+                
+                $this->connection->beginTransaction();
+
+                if ($stmt->execute()) {
+                    $this->connection->commit();
+                    return true;
+                } else {
+                    $this->connection->rollBack();
+                    return false;
+                }
+            } catch (Exception $e) {
+                //throw $th;
+                echo $e;
+            }
+            return false;
+        }
 
     }
 
