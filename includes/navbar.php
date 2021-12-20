@@ -22,7 +22,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 </a>
 
 <!-- Divider -->
-<hr class="sidebar-divider my-0">
+<!-- <hr class="sidebar-divider my-0"> -->
 
 <!-- Nav Item - Dashboard -->
 <li class="nav-item active">
@@ -30,6 +30,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <i class="fas fa-fw fa-tachometer-alt"></i>
     <span>Thống kê</span></a>
 </li>
+
 <!-- Nav Item - Tables -->
 <li class="nav-item">
   <a class="nav-link" href="layout.php">
@@ -40,26 +41,22 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <li class="nav-item">
   <a class="nav-link" href="layoutUser.php">
     <i class="fas fa-fw fa-table"></i>
-    <span>Bảng User</span></a>
+    <span>Bảng người dùng</span></a>
 </li>
 <li class="nav-item">
   <a class="nav-link" href="layoutStore.php">
     <i class="fas fa-fw fa-table"></i>
-    <span>Danh sách các của hàng</span></a>
+    <span>Danh sách các cửa hàng</span></a>
 </li>
 <li class="nav-item">
   <a class="nav-link" href="layoutOrder.php">
     <i class="fas fa-fw fa-table"></i>
     <span>Đơn hàng</span></a>
 </li>
-<li class="nav-item">
-  <a class="nav-link" href="admin.php">
-    <i class="fas fa-fw fa-chart-area"></i>
-    <span>Admin</span></a>
-</li>
+
 
 <!-- Divider -->
-<hr class="sidebar-divider">
+<!-- <hr class="sidebar-divider"> -->
 
 <!-- Heading -->
 <!-- <div class="sidebar-heading">
@@ -106,7 +103,7 @@ Heading -->
 <!-- Nav Item - Charts -->
 
 <!-- Divider -->
-<hr class="sidebar-divider d-none d-md-block">
+<!-- <hr class="sidebar-divider d-none d-md-block"> -->
 
 <!-- Sidebar Toggler (Sidebar) -->
 <div class="text-center d-none d-md-inline">
@@ -252,7 +249,7 @@ Heading -->
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Logout?</h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
           </button>
