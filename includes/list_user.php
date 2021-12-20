@@ -7,7 +7,7 @@ if(isset($_SESSION['err'])){
 require_once 'configs/connect.php';
 
 try{
-    // SELECT * FROM tb_role
+    // SELECT * FROM tblusers
     $stmt = $pdo->prepare("SELECT * FROM tblusers ORDER BY id DESC");
 
     //Thực thi câu lệnh
@@ -17,7 +17,7 @@ try{
 
     // $ds = $stmt->fetchAll();
 
-    echo "<table border='1' cellpadding='20'>
+    echo "<table border='1' cellpadding='5'>
             <tr><th>ID</th> <th>Name</th> <th>Email</th> <th>Phone</th> 
             </tr> 
             ";

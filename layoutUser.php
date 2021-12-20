@@ -1,5 +1,5 @@
 <?php
-    require_once 'configs/db.php';
+ 
     include('includes/header.php'); 
     include('includes/navbar.php'); 
 ?>
@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 
     <style>
+        .container{
+            margin-left: 50px;
+        }
     
         label{
             font-weight: 500;
@@ -34,6 +37,7 @@
 
 </head>
 <body>
+<div class="container">
 <h1>All User</h1>
     <?php
         if(isset($_GET['page_layout'])){
@@ -48,6 +52,7 @@
             require_once 'includes/list_user.php';
         }
     ?>
+</div>
 <?php
 include('includes/scripts.php');
 include('includes/footer.php');
