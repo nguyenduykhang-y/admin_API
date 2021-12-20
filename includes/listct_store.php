@@ -8,7 +8,7 @@ require_once 'configs/connect.php';
 
 try{
     // SELECT * FROM tb_role
-    $stmt = $pdo->prepare("SELECT * FROM tblstore ORDER BY storeId DESC");
+    $stmt = $pdo->prepare("SELECT * FROM tblstore ORDER BY storeId ASC");
 
     //Thực thi câu lệnh
     $stmt->execute();

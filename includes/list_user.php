@@ -8,7 +8,7 @@ require_once 'configs/connect.php';
 
 try{
     // SELECT * FROM tblusers
-    $stmt = $pdo->prepare("SELECT * FROM tblusers ORDER BY id DESC");
+    $stmt = $pdo->prepare("SELECT * FROM tblusers ORDER BY id ASC");
 
     //Thực thi câu lệnh
     $stmt->execute();
