@@ -23,24 +23,11 @@ if ($access_token) {
     try {
         $decoded = JWT::decode($access_token, Constant::MY_SECRET_KEY, array('HS256'));
 
-        // $name, $price, $quantity, $image_url, $category_id
-        $name = $data->name;
-        $price = $data->price;
-        $quantity = $data->quantity;
-        $image_url = $data->image_url;
-        $category_id = $data->category_id;
+        $products = (new ProductShopController())->getAllProductsShop();
 
-        $status = (new ProductShopController())->insert($name, $price, $quantity, $image_url, $category_id);
-        if ($status) {
-            http_response_code(200);  
-            echo json_encode(array("status"=> true));
-        } else {
-            http_response_code(404);  
-            echo json_encode(array("status"=> false));
-        }
-        
+        echo json_encode($products);
     } catch (\Throwable $th) {
-        http_response_code(401); 
+        http_response_code(401);  
     }
 } else {
     http_response_code(401);    

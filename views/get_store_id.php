@@ -18,20 +18,27 @@ include_once '../controllers/store.php';
 use \Firebase\JWT\JWT;
 
 
-// $access_token = getBearerToken();
-// if ($access_token) {
-//     try {
-//         $decoded = JWT::decode($access_token, Constant::MY_SECRET_KEY, array('HS256'));
-//         // $storeID = $decoded->storeID;
-//         $product = (new StoreController())->getByStoreID($data->storeId);
+$access_token = getBearerToken();
+if ($access_token) {
+    try {
+        $decoded = JWT::decode($access_token, Constant::MY_SECRET_KEY, array('HS256'));
+        // $storeID = $decoded->storeID;
+        $status = (new StoreController())->getByStoreEmail($data->storeEmail);
+        if ($status) {
+            http_response_code(200);  
+            echo json_encode(array("status"=> true));
+        } else {
+            http_response_code(404);  
+            echo json_encode(array("status"=> false));
+        }
 
-//         echo json_encode($product);
-//     } catch (Exception $e) {
-//         echo $e->getMessage();
-//         http_response_code(401);  
-//     }
-// } else {
-//     http_response_code(401);    
-// }
+        // echo json_encode($product);
+    } catch (Exception $e) {
+        echo $e->getMessage();
+        http_response_code(401);  
+    }
+} else {
+    http_response_code(401);    
+}
 
 ?>

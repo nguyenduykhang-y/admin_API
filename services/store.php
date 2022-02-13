@@ -12,13 +12,12 @@
         }
 
         //get cửa hàng by storeId
-        public function getByStroreId($storeId){
+        public function getByStroreEmail($storeEmail){
             try {
                 $q = "SELECT storeID, storeName, storeAddress,storePhone,storeImage,storeEmail
-                     from " . $this->tblStore . " where storeId=:storeId ";
+                     from " . $this->tblStore . " where storeEmail=:storeEmail ";
                 $stmt = $this->connection->prepare($q);                
-                $stmt->bindParam(":storeId", $storeId);
-
+                $stmt->bindParam(":storeEmail", $storeEmail);
                 $stmt->execute();
 
                 if ($stmt->rowCount() > 0) {
@@ -39,6 +38,7 @@
             }
             return null;
         }
+
 
 
         public function getAllStore(){
@@ -104,7 +104,6 @@
             }
             return false;
         }
-
     }
 
 
